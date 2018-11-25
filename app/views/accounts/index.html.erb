@@ -1,0 +1,15 @@
+<h1>Listing amount for this month </h1>
+
+<table>
+  <tr>
+    <th> Items brought </th>
+    <th> amount spent </th>
+    <th> edit </th>
+  </tr>
+  <% @accounts.each do |account| %>
+  <tr> 
+    <td><%= account.items_brought %></td>
+    <td><%= account.amount_spent %></td>
+    <td> <%= link_to 'edit', edit_account_path(account) %> </td>
+    <% end %>
+</table>

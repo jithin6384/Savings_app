@@ -1,0 +1,23 @@
+<h1> Edit if you have mistaken </h1>
+
+<% if @account.errors.any? %>
+ 
+ <% @account.errors.full_messages.each do |msg| %>
+ <ul>
+ <li><%= msg %></li>
+ </ul>
+ <% end %>
+<% end %>
+
+<%= form_for @account do |f| %>
+<p><%= f.label :items_brought %> |
+   <%= f.text_field :items_brought %>
+</p>
+<br>
+<p><%= f.label :amount_spent %> |
+   <%= f.text_field :amount_spent %>
+</p>
+<p> 
+ <%= f.submit %>
+</p>
+<% end %>
