@@ -1,3 +1,27 @@
-<p><%= @account.items_brought %> &nbsp &nbsp
-   Rs <%= @account.amount_spent %>
- </p>
+
+
+ <h2 align="center">Items Brought <%= @account.items_brought %></h2>
+
+<div class="well col-xs-8 col-xs-offset-2">
+
+<h4 class="center description"><strong>Amount spent:</strong></h4>
+
+<hr>
+
+<%= @account.amount_spent %>
+
+<div class="article-actions">
+
+<%= link_to "Edit this account", '#', class: "btn btn-xs btn-primary" %>
+
+<%= link_to "Delete this account", '#', method: :delete,
+
+data: { confirm: "Are you sure you want to delete the article?"},
+
+class: "btn btn-xs btn-danger" %>
+
+<%= link_to "View all ", accounts_path, class: "btn btn-xs btn-success" %>
+
+</div>
+
+</div>
