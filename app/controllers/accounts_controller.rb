@@ -5,7 +5,24 @@ class AccountsController < ApplicationController
  end
 
  def index
- 	@accounts = Account.all
+ 	#@accounts = Account.all
+   # if Count.last.count == nil 
+   #    count = 1 
+   # else
+   # debugger
+      count = Count.last.count
+   # end
+      count = count + params[:format].to_i
+      if params[:format].present?
+        @date = count.day.ago.strftime("%d/%m/%Y %H:%M")
+      else 
+        @date = 0.day.ago.strftime("%d/%m/%Y %H:%M")
+      end
+        Count.last.update(count: count)
+        d= Date.parse(@date)
+        @d = d
+        @accounts = Account.where(created_at: d.midnight..d.end_of_day)
+        @accounts_first_date = Account.first.created_at.to_date
  end
 
  def new
@@ -18,6 +35,7 @@ class AccountsController < ApplicationController
 
  def create 
    @account = Account.new(account_params)
+   @account.user = User.first
    if @account.save
    	  flash[:notice] = "price was succesfully updated"
       redirect_to account_path(@account)

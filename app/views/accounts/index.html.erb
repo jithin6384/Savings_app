@@ -2,14 +2,28 @@
 
 <table>
   <tr>
-    <th> Items brought </th>
+    <th> Items brought </th><br>
     <th> amount spent </th>
     <th> edit </th>
   </tr>
+  <br>
   <% @accounts.each do |account| %>
   <tr> 
-    <td><%= account.items_brought %></td>
+    <td><%= account.items_brought %></td><br>
     <td><%= account.amount_spent %></td>
     <td> <%= link_to 'edit', edit_account_path(account) %> </td>
+  </tr>
     <% end %>
 </table>
+
+
+
+    
+   <% if Date.today.to_date != @d %>
+<p> <%= link_to 'previous', accounts_path(-1) %> | 
+    <% end %>
+
+  
+   <% if @article_first_date != @d %>
+  <%= link_to 'next', accounts_path(1) %> </p>
+  <%end%>
